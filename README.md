@@ -8,8 +8,9 @@ This repository provides an enterprise-grade architectural implementation guide 
 
 ## Architecture Overview
 
+
 <p align="center">
-  <img src="images/book-application-without-istio-architecutre.png" alt="Microservices Architecture Without Service Mesh" width="800">
+  <img src="images/overall-architecture.png" alt="overall-archi" width=800"">
 </p>
 
 The baseline deployment begins with an unmanaged multi-service architecture where applications manage their own inter-service calls over unencrypted, unobserved internal cluster networks.
@@ -101,7 +102,9 @@ Before executing this lab, ensure you have access to:
 ├── images/                 # Architecture diagrams, visual validation screenshots, and interactive UI assets
 └── README.md               # Enterprise Platform Architecture Documentation
 ```
-
+<p align="center">
+  <img src="images/book-application-without-istio-architecutre.png" alt="Microservices Architecture Without Service Mesh" width="800">
+</p>
 ---
 
 ## Environment Variables
@@ -123,7 +126,7 @@ export GATEWAY_NS="asm-ingress"
 
 ## Implementation
 
-### Task 1: Complete Lab Setup & Governance Verification
+### Task 1: Complete  Setup & Governance Verification
 
 Establish project credentials, verify IAM administrative roles, and attach cluster credentials to the local `kubectl` context.
 
