@@ -1,5 +1,8 @@
-# Managed Cloud Service Mesh (CSM) on Google Kubernetes Engine
 
+<h1 align="center">
+  
+  <img  height="70" alt="csm" src="https://github.com/user-attachments/assets/d073135d-381e-4dd2-a8d6-040b28d972e3" /><img  height="70" alt="istio-svc-mesh" src="https://github.com/cncf/artwork/blob/main/projects/istio/icon/color/istio-icon-color.png" /> Managed Cloud Service Mesh (CSM) on Google Kubernetes Engine
+</h1>
 ## Executive Summary
 
 This repository provides an enterprise-grade architectural implementation guide for deploying **Google Cloud Service Mesh (CSM)**—a managed, Istio-compatible service mesh—on **Google Kubernetes Engine (GKE)**. It demonstrates how platform engineering teams can decouple application networking, zero-trust security, traffic management, and operational observability from microservice application logic using Google-managed control planes and Envoy sidecar proxies.
