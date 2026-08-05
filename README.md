@@ -110,7 +110,7 @@ Before executing this lab, ensure you have access to:
   <img src="images/book-application-without-istio-architecutre.png" alt="Microservices Architecture Without Service Mesh" width="800">
 </p>
 
-## After implementation
+## After implementation of microservice architecture with Istio Service Mesh and Envoy Sidecar Proxy
 
 <p align="center">
   <img src="images/applicationwithistio.svg" alt="Microservices Architecture with Service Mesh" width="800">
