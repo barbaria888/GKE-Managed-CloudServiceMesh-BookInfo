@@ -1,7 +1,10 @@
 
 <h1 align="center">
-  
-  <img  height="70" alt="csm" src="https://github.com/user-attachments/assets/d073135d-381e-4dd2-a8d6-040b28d972e3" /> <img src="https://github.com/barbaria888/CloudSQLAlchemy-GKE/blob/6703241b8bb65b921800467f801f1df5427bef19/images/Workload%20Identity%20Pool.png" height="70">&nbsp;Managed Cloud Service Mesh (CSM) on <br> Google Kubernetes Engine <img  height="70" alt="istio-svc-mesh" src="https://github.com/cncf/artwork/blob/main/projects/istio/icon/color/istio-icon-color.png" /><img src="https://github.com/envoyproxy/artwork/blob/main/Stacked%20PNG/Envoy_Logo_Stacked_PANTONE-REVERSE.png" height="70">
+  <div>
+  <img  height="70" alt="csm" src="https://github.com/user-attachments/assets/d073135d-381e-4dd2-a8d6-040b28d972e3" /> <img src="https://github.com/barbaria888/CloudSQLAlchemy-GKE/blob/6703241b8bb65b921800467f801f1df5427bef19/images/Workload%20Identity%20Pool.png" height="70">&nbsp;  
+    <img  height="70" alt="istio-svc-mesh" src="https://github.com/cncf/artwork/blob/main/projects/istio/icon/color/istio-icon-color.png" /><img src="https://github.com/envoyproxy/artwork/blob/main/Stacked%20PNG/Envoy_Logo_Stacked_PANTONE-REVERSE.png" height="70">
+  </div>
+  Managed Cloud Service Mesh (CSM) on <br> Google Kubernetes Engine 
 </h1>
 
 ## Executive Summary
