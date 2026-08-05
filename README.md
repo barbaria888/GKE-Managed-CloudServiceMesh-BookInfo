@@ -109,6 +109,14 @@ Before executing this lab, ensure you have access to:
 <p align="center">
   <img src="images/book-application-without-istio-architecutre.png" alt="Microservices Architecture Without Service Mesh" width="800">
 </p>
+
+## After implementation
+
+<p align="center">
+  <img src="images/applicationwithistio.svg" alt="Microservices Architecture with Service Mesh" width="800">
+</p>
+
+
 ---
 
 ## Environment Variables
