@@ -34,10 +34,10 @@ By integrating **Cloud Service Mesh**, traffic entering the cluster is intercept
 
 Modern enterprise organizations migrating monolithic systems to GKE microservices face critical operational challenges:
 
-• **Security Compliance Deficits**: Inter-service ("east-west") communication across cluster namespaces defaults to unencrypted HTTP, failing strict zero-trust security audits.
-• **Application Code Bloat**: Developers waste engineering cycles embedding custom retry logic, circuit breaking, mTLS certificate handling, and metrics export inside application codebases.
-• **Unpredictable Release Risk**: Routing traffic to new software versions (canary or blue-green releases) requires hazardous DNS updates or manual service target re-configurations.
-• **Observability Blindspots**: Operations teams lack unified topology graphs, standardized HTTP error tracking, and latency metrics across polyglot microservice environments written in Python, Java, Node.js, and Ruby.
+-  **Security Compliance Deficits**: Inter-service ("east-west") communication across cluster namespaces defaults to unencrypted HTTP, failing strict zero-trust security audits.
+-  **Application Code Bloat**: Developers waste engineering cycles embedding custom retry logic, circuit breaking, mTLS certificate handling, and metrics export inside application codebases.
+-  **Unpredictable Release Risk**: Routing traffic to new software versions (canary or blue-green releases) requires hazardous DNS updates or manual service target re-configurations.
+-  **Observability Blindspots**: Operations teams lack unified topology graphs, standardized HTTP error tracking, and latency metrics across polyglot microservice environments written in Python, Java, Node.js, and Ruby.
 
 ---
 
