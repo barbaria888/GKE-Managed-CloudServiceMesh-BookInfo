@@ -243,126 +243,11 @@ kubectl describe ns $GATEWAY_NS
 # Ensure target configuration directory exists
 mkdir -p config-manifests
 
-# Define and store Ingress Gateway resources in config-manifests/asm-ingress.yaml
-cat <<'EOF' > config-manifests/asm-ingress.yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: istio-ingressgateway
-  namespace: asm-ingress
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: istio-ingressgateway
-  namespace: asm-ingress
-  labels:
-    app: istio-ingressgateway
-    istio: ingressgateway
-spec:
-  ports:
-    - name: status-port
-      port: 15021
-      protocol: TCP
-      targetPort: 15021
-    - name: http2
-      port: 80
-    - name: https
-      port: 443
-  selector:
-    istio: ingressgateway
-    app: istio-ingressgateway
-  type: LoadBalancer
-
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: istio-ingressgateway
-  namespace: asm-ingress
-rules:
-  - apiGroups: [""]
-    resources: ["secrets"]
-    verbs: ["get", "watch", "list"]
-
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: istio-ingressgateway
-  namespace: asm-ingress
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: istio-ingressgateway
-subjects:
-  - kind: ServiceAccount
-    name: istio-ingressgateway
-
----
-apiVersion: policy/v1
-kind: PodDisruptionBudget
-metadata:
-  name: istio-ingressgateway
-  namespace: asm-ingress
-spec:
-  maxUnavailable: 1
-  selector:
-    matchLabels:
-      istio: ingressgateway
-      app: istio-ingressgateway
-
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: istio-ingressgateway
-  namespace: asm-ingress
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: istio-ingressgateway
-      istio: ingressgateway
-  template:
-    metadata:
-      annotations:
-        inject.istio.io/templates: gateway
-      labels:
-        app: istio-ingressgateway
-        istio: ingressgateway
-    spec:
-      containers:
-        - name: istio-proxy
-          image: auto
-      serviceAccountName: istio-ingressgateway
-
----
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: istio-ingressgateway
-  namespace: asm-ingress
-spec:
-  maxReplicas: 5
-  metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        target:
-          type: Utilization
-          averageUtilization: 80
-  minReplicas: 3
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: istio-ingressgateway
-EOF
-
 # Apply Gateway Deployment manifest from config-manifests/
 kubectl apply -f config-manifests/asm-ingress.yaml
 ```
+
+Ingress manifest: [`config-manifests/asm-ingress.yaml`](config-manifests/asm-ingress.yaml)
 
 <p align="center">
   <img src="images/kubectlapplyasm-ingress-and-get-pods-svcs.png" alt="Applying Ingress Gateway Manifest" width="800">
@@ -418,65 +303,22 @@ kubectl apply -f app-manifests/bookinfo.yaml
 Configure the Istio `Gateway` resource in `config-manifests/gateway.yaml` to accept HTTP port 80 traffic and construct a `VirtualService` in `config-manifests/virtualservice.yaml` to route URIs (`/productpage`, `/static`, `/login`, `/logout`, `/api/v1/products`) to the `productpage` service.
 
 ```bash
-# Create Istio Gateway resource manifest in config-manifests/gateway.yaml
-cat <<'EOF' > config-manifests/gateway.yaml
-apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
-metadata:
-  name: bookinfo-gateway
-  namespace: asm-ingress
-spec:
-  selector:
-    istio: ingressgateway
-  servers:
-  - port:
-      number: 80
-      name: http
-      protocol: HTTP
-    hosts:
-    - "*"
-EOF
-
+# Apply Istio Gateway resource manifest from config-manifests/
 kubectl apply -f config-manifests/gateway.yaml
 ```
+
+Gateway manifest: [`config-manifests/gateway.yaml`](config-manifests/gateway.yaml)
 
 <p align="center">
   <img src="images/gateway-yaml-apply-and-create.png" alt="Istio Gateway Resource Creation" width="800">
 </p>
 
 ```bash
-# Create VirtualService routing rules manifest in config-manifests/virtualservice.yaml
-cat <<'EOF' > config-manifests/virtualservice.yaml
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  name: bookinfo
-spec:
-  hosts:
-  - "*"
-  gateways:
-  - asm-ingress/bookinfo-gateway
-  http:
-  - match:
-    - uri:
-        exact: /productpage
-    - uri:
-        prefix: /static
-    - uri:
-        exact: /login
-    - uri:
-        exact: /logout
-    - uri:
-        prefix: /api/v1/products
-    route:
-    - destination:
-        host: productpage
-        port:
-          number: 9080
-EOF
-
+# Apply VirtualService routing rules manifest from config-manifests/
 kubectl apply -f config-manifests/virtualservice.yaml
 ```
+
+VirtualService manifest: [`config-manifests/virtualservice.yaml`](config-manifests/virtualservice.yaml)
 
 <p align="center">
   <img src="images/apply-and-chek-virtual-svc.png" alt="VirtualService Resource Creation and Inspection" width="800">
